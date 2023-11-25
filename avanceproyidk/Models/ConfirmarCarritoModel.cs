@@ -11,6 +11,7 @@ namespace avanceproyidk.Models
         public string usuario { get; set; }
         public string contrasena { get; set; }
 
+        // Agregando comentario para testear git
 
         public string numerotarjeta { get; set; }
         public string fechaexpiracion { get; set; }
