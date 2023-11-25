@@ -1,0 +1,96 @@
+﻿@model ProductosCatalogosModel;
+@{
+    ViewData["Title"] = "DetalleProducto";
+}
+
+<h1>DetalleProducto</h1>
+<div class="row mt-5">
+
+    <input type="hidden" value="@Model.idproducto" id="hdnIdProducto" />
+
+    <div class="col-md-4">
+        <img class="card-img-top" src="@Model.imagen" alt="@Model.nombreproducto">
+    </div>
+
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-12">
+                <h6 class="text-secondary">@Model.marca</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h5>@Model.nombreproducto</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    <i class="fa-solid fa-money-bill-1 text-success" style="font-size:50px;"></i>
+                    <span class="text-secondary" style="font-size:40px; text-decoration: line-through;">@Model.precio</span>
+                    <span class="text-success" style="font-size:60px;">@Model.preciofinal</span>
+                    <span class="text-danger font-weight-bold">- @Model.descuento%</span>
+                </p>
+
+                <p>
+                    <b>Description:</b> @Model.descripcion
+                </p>
+
+                <p>
+
+                    <button class="btn btn-danger"><i class="fa-solid fa-minus"></i></button>
+
+                    <input class="form-control" id="txtCantidad" type="text" style="width:50px;" />
+
+                    <button class="btn btn-success"><i class="fa-solid fa-plus"></i></button>
+                </p>
+
+
+                <button id="btnAnadir" class="btn btn-primary"><i class="fa-solid fa-cart-plus"></i> Añadir</button>
+
+                <a asp-controller="Carrito" asp-action="ConfirmarCarrito" class="btn btn-primary"> Confirmar Compra</a>
+
+                <a asp-controller="Carrito" asp-action="CatalogoProducto" class="btn btn-secondary"> Volver</a>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script type="text/javascript">
+        
+        $(document).ready(function () {
+            $("#btnAnadir").click(() => { addproductotemporal(); });
+        });
+
+
+        const addproductotemporal = () => {
+            const cantidad = $("#txtCantidad").val();
+            const idproducto = $("#hdnIdProducto").val();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("ProductoTemporal", "Carrito")',
+                data: {
+                    "Id": idproducto,
+                    "cantidad": cantidad
+                };
+                success: () => {
+                    alert("Se anadio el producto");
+                    $("#txtCantidad").val("");
+                },
+                error: (ex, det) => {
+                    console.log("ERROR -->", ex, det)
+                }
+            });
+        }
+   
+    </script>
+
+
+}
+
+
