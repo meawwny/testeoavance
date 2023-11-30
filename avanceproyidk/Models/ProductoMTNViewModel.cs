@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace ecommerce_videojuegos_GAMING_POINT_.Models
+namespace avanceproyidk.Models
 {
     public class ProductoMTNListViewModel
     {
