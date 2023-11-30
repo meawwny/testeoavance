@@ -45,12 +45,12 @@ namespace avanceproyidk.Controllers
             ProductosEntity entity = new ProductosEntity();
             entity.nombreproducto = model.nombreproducto;
             entity.marca = model.marca;
-            entity.precio = model.precio.HasValue ? model.DNI.Value : 0;
+            entity.precio = model.precio;
             entity.descuento =model.descuento;
             entity.preciofinal = model.preciofinal;
-            entity.stock = model.stock.HasValue ? model.Celular.Value : 0;
+            entity.stock = model.stock;
             entity.descripcion = model.descripcion;
-            entity.imagen = model.imagen.HasValue ? model.TelefonoContacto.Value : 0;
+            entity.imagen = model.imagen;
             _productosContext.Productos.Add(entity);
             _productosContext.SaveChanges();
             return RedirectToAction("List", "Productos");
@@ -73,7 +73,7 @@ namespace avanceproyidk.Controllers
         [HttpPost]
         public IActionResult EditSaved(ProductoMTNViewModel model)
         {
-            var findAlumnos = _productosContext.Productos.SingleOrDefault(a => a.Id == model.Id);
+            var findProductos = _productosContext.Productos.SingleOrDefault(a => a.Id == model.Id);
             if (findAlumnos != null)
             {
                 findProductos.nombreproducto = model.nombreproducto;
@@ -92,7 +92,7 @@ namespace avanceproyidk.Controllers
         [HttpGet]
         public JsonResult DeleteProductos(int Id)
         {
-            var findAlumnos = _productosContext.Productos.SingleOrDefault(a => a.ID == ID);
+            var findProductos = _productosContext.Productos.SingleOrDefault(a => a.ID == ID);
             _productosContext.Productos.Remove(findProductos);
             _productosContext.SaveChanges();
             return Json("Se eliminó al productos de manera correcta");
