@@ -40,7 +40,7 @@ namespace avanceproyidk.Controllers
 
 
         [HttpPost]
-        public JsonResult ProductoTemporal(ProductosTemporalesModel param)
+        public JsonResult AddProductoTemporal(ProductosTemporalesModel param)
         {
             // product info
             var productoXid = _context.Producto.Where(c => c.Id == param.Id && c.Status == true).SingleOrDefault();
@@ -50,18 +50,18 @@ namespace avanceproyidk.Controllers
 
 
             // product list
-            List<ProductosTemporalesModel> temporals = null;
+            List<ProductosTemporalesModel> temporalproducts = null;
 
             if(HttpContext.Session.GetList<ProductosTemporalesModel>("temporal") == null)
             {
-                temporals = new List<ProductosTemporalesModel>();
+                temporalproducts = new List<ProductosTemporalesModel>();
             }
             else
             {
-                temporals = (List<ProductosTemporalesModel>)HttpContext.Session.GetList<ProductosTemporalesModel>("temporal");
+                temporalproducts = (List<ProductosTemporalesModel>)HttpContext.Session.GetList<ProductosTemporalesModel>("temporal");
             }
-            temporals.Add(param);
-            HttpContext.Session.Set<List<ProductosTemporalesModel>>("temporal", temporals);
+            temporalproducts.Add(param);
+            HttpContext.Session.Set<List<ProductosTemporalesModel>>("temporal", temporalproducts);
             return new JsonResult(new { a = 1 });
 
         }
@@ -69,25 +69,24 @@ namespace avanceproyidk.Controllers
         public IActionResult ConfirmarCarrito()
         {
             var model = new ConfirmarCarritoModel();
-            model.Temporal = (List<ProductosTemporalesModel>)HttpContext.Session.GetList<ProductosTemporalesModel>("temporal");
+            model.TemporalProducts = (List<ProductosTemporalesModel>)HttpContext.Session.GetList<ProductosTemporalesModel>("temporal");
             return View(model);
         }
 
-
+        
         [HttpPost]
-        public IActionResult GuardarCarrito(ConfirmarCarritoModel modelSave)
+        public IActionResult GuardarCarrito(ConfirmarCarritoModel modelToSave)
         {
-            modelSave.Temporal = (List<ProductosTemporalesModel>)HttpContext.Session.GetList<ProductosTemporalesModel>("temporal");
-
+            modelToSave.TemporalProducts = (List<ProductosTemporalesModel>)HttpContext.Session.GetList<ProductosTemporalesModel>("temporal");
 
             // guardar user
             var userReg = _context.Usuario.Add(new UsuarioEntity()
             {
-                dni = modelSave.dni,
-                nombre = modelSave.nombre,
-                apellido = modelSave.apellido,
-                usuario = modelSave.usuario,
-                contrasena = modelSave.contrasena,
+                dni = modelToSave.dni,
+                nombre = modelToSave.nombre,
+                apellido = modelToSave.apellido,
+                usuario = modelToSave.usuario,
+                contrasena = modelToSave.contrasena,
                 Status = true,
             });
 
@@ -95,17 +94,17 @@ namespace avanceproyidk.Controllers
             // guardar orden
             var ordenReg = _context.Orden.Add(new OrdenEntity()
             {
-                numerotarjeta = modelSave.numerotarjeta,
-                fechaexpiracion = modelSave.fechaexpiracion,
-                cvv = modelSave.cvv,
-                correo = modelSave.correo,
+                numerotarjeta = modelToSave.numerotarjeta,
+                fechaexpiracion = modelToSave.fechaexpiracion,
+                cvv = modelToSave.cvv,
+                correo = modelToSave.correo,
                 fechaOrden = DateTime.Now,
                 Usuario = userReg.Entity,
                 Status = true
             });
 
             // guardar productos
-            foreach(var item in modelSave.Temporal)
+            foreach(var item in modelToSave.TemporalProducts)
             {
                 _context.OrdenDetalle.Add(new OrdenDetalleEntity()
                 {
@@ -115,40 +114,13 @@ namespace avanceproyidk.Controllers
                     Producto = _context.Producto.Where(c => c.Id == item.Id).FirstOrDefault(),
                 });
             }
-
+                
             _context.SaveChanges();
 
             return RedirectToAction("MsgOrdenExitosa");
         }
 
         public IActionResult MsgOrdenExitosa()
-        {
-            return View();
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public IActionResult Index()
         {
             return View();
         }

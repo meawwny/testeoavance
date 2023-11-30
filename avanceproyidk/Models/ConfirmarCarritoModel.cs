@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace avanceproyidk.Models
 {
@@ -19,11 +18,11 @@ namespace avanceproyidk.Models
         public string correo { get; set; }
 
 
-        public List<ProductosTemporalesModel> Temporal { get; set; }
+        public List<ProductosTemporalesModel> TemporalProducts { get; set; }
 
         public ConfirmarCarritoModel()
         {
-            Temporal = new List<ProductosTemporalesModel>();
+            TemporalProducts = new List<ProductosTemporalesModel>();
         }
 
     }

@@ -14,7 +14,6 @@
                 <div class="card-body">
                     <h5 class="card-title limiter">@product.nombreproducto</h5>
                     <p class="card-text log-limiter">@product.descripcion</p>
-                    <a href="#" class="btn btn-primary"><i class="fa-solid fa-cart-plus"></i> Añadir</a>
                     <a asp-action="DetalleProducto" asp-controller="Carrito"
                        asp-route-id="@product.idproducto" class="btn btn-success">
                         <i class="fa-solid fa-magnifying-glass"></i> Detalles
@@ -22,5 +21,7 @@
                 </div>
             </div>
         </div>
+
+
     }
 </div>

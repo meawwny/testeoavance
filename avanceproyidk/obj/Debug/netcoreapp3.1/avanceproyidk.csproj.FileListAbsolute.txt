@@ -423,3 +423,4 @@ D:\CC\DSW\avanceproyidk\avanceproyidk\bin\Debug\netcoreapp3.1\AutoMapper.Extensi
 D:\CC\DSW\avanceproyidk\avanceproyidk\obj\Debug\netcoreapp3.1\Razor\Views\Carrito\CatalogoProducto.cshtml.g.cs
 D:\CC\DSW\avanceproyidk\avanceproyidk\obj\Debug\netcoreapp3.1\Razor\Views\Carrito\DetalleProducto.cshtml.g.cs
 D:\CC\DSW\avanceproyidk\avanceproyidk\obj\Debug\netcoreapp3.1\Razor\Views\Carrito\ConfirmarCarrito.cshtml.g.cs
+D:\CC\DSW\avanceproyidk\avanceproyidk\obj\Debug\netcoreapp3.1\Razor\Views\Carrito\MsgOrdenExitosa.cshtml.g.cs

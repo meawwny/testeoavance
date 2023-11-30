@@ -48,7 +48,7 @@
 
                 <button id="btnAnadir" class="btn btn-primary"><i class="fa-solid fa-cart-plus"></i> Añadir</button>
 
-                <a asp-controller="Carrito" asp-action="ConfirmarCarrito" class="btn btn-primary"> Confirmar Compra</a>
+                <a asp-controller="Carrito" asp-action="ConfirmarCarrito" class="btn btn-danger"> Confirmar Compra</a>
 
                 <a asp-controller="Carrito" asp-action="CatalogoProducto" class="btn btn-secondary"> Volver</a>
 
@@ -61,35 +61,35 @@
 @section Scripts{
 
     <script type="text/javascript">
-        
+
         $(document).ready(function () {
-            $("#btnAnadir").click(() => { addproductotemporal(); });
+            $("#btnAnadir").click(() => { addTemporalProduct(); });
+            //document.getElementById("btnAnadir").addEventListener("click", ()=> {  alert('HOLA MUNDO') });
         });
 
-
-        const addproductotemporal = () => {
-            const cantidad = $("#txtCantidad").val();
-            const idproducto = $("#hdnIdProducto").val();
+        const addTemporalProduct = () => {
+            const quantity = $("#txtCantidad").val();
+            const productId = $("#hdnIdProducto").val();
 
             $.ajax({
                 type: 'POST',
-                url: '@Url.Action("ProductoTemporal", "Carrito")',
+                url: '@Url.Action("AddProductoTemporal","Carrito")',
                 data: {
-                    "Id": idproducto,
-                    "cantidad": cantidad
-                };
+                    "Id": productId,
+                    "cantidad": quantity
+                },
                 success: () => {
-                    alert("Se anadio el producto");
+                    alert("Se añadio el producto satisfactoriamente");
                     $("#txtCantidad").val("");
                 },
                 error: (ex, det) => {
-                    console.log("ERROR -->", ex, det)
+                    console.log("ERROR =>", ex, det);
                 }
             });
         }
-   
-    </script>
 
+
+    </script>
 
 }
 
