@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-namespace ecommerce_videojuegos_GAMING_POINT_.Controllers
+namespace avanceproyidk.Controllers
 {
     public class ProductoController : Controller
     {
