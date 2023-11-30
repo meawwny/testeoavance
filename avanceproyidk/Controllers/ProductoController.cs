@@ -71,7 +71,7 @@ namespace avanceproyidk.Controllers
         [HttpPost]
         public IActionResult EditSaved(ProductoMTNViewModel model)
         {
-            var findAlumnos = _productosContext.Productos.SingleOrDefault(a => a.Id == model.Id);
+            var findProductos = _productosContext.Productos.SingleOrDefault(a => a.Id == model.Id);
             if (findAlumnos != null)
             {
                 findProductos.nombreproducto = model.nombreproducto;
@@ -90,7 +90,7 @@ namespace avanceproyidk.Controllers
         [HttpGet]
         public JsonResult DeleteProductos(int Id)
         {
-            var findAlumnos = _productosContext.Productos.SingleOrDefault(a => a.ID == ID);
+            var findProductos = _productosContext.Productos.SingleOrDefault(a => a.ID == ID);
             _productosContext.Productos.Remove(findProductos);
             _productosContext.SaveChanges();
             return Json("Se eliminó al productos de manera correcta");
