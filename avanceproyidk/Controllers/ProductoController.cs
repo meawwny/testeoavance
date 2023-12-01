@@ -2,12 +2,10 @@ using avanceproyidk.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using avanceproyidk.DataAccess;
-using avanceproyidk.Models;
 using avanceproyidk.DataAccess.DBEntities;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 
 namespace avanceproyidk.Controllers
 {
