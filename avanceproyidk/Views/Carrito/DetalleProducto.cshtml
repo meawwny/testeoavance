@@ -1,30 +1,30 @@
-﻿@model ProductosCatalogosModel;
+@model ProductosCatalogosModel
 @{
     ViewData["Title"] = "DetalleProducto";
 }
 
-<h1>DetalleProducto</h1>
-<div class="row mt-5">
+<h1>Detalle Producto</h1>
 
+<section class="row mt-5">
     <input type="hidden" value="@Model.idproducto" id="hdnIdProducto" />
 
-    <div class="col-md-4">
+    <article class="col-md-4">
         <img class="card-img-top" src="@Model.imagen" alt="@Model.nombreproducto">
-    </div>
+    </article>
 
-    <div class="col-md-8">
-        <div class="row">
-            <div class="col-md-12">
+    <article class="col-md-8">
+        <section class="row">
+            <article class="col-md-12">
                 <h6 class="text-secondary">@Model.marca</h6>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
+            </article>
+        </section>
+        <section class="row">
+            <article class="col-md-12">
                 <h5>@Model.nombreproducto</h5>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
+            </article>
+        </section>
+        <section class="row">
+            <article class="col-md-12">
                 <p>
                     <i class="fa-solid fa-money-bill-1 text-success" style="font-size:50px;"></i>
                     <span class="text-secondary" style="font-size:40px; text-decoration: line-through;">@Model.precio</span>
@@ -33,43 +33,34 @@
                 </p>
 
                 <p>
-                    <b>Description:</b> @Model.descripcion
+                    <b>Descripción:</b> @Model.descripcion
                 </p>
 
                 <p>
-
                     <button class="btn btn-danger"><i class="fa-solid fa-minus"></i></button>
-
                     <input class="form-control" id="txtCantidad" type="text" style="width:50px;" />
-
                     <button class="btn btn-success"><i class="fa-solid fa-plus"></i></button>
                 </p>
-
 
                 <button id="btnAnadir" class="btn btn-primary"><i class="fa-solid fa-cart-plus"></i> Añadir</button>
 
                 <a asp-controller="Carrito" asp-action="ConfirmarCarrito" class="btn btn-danger"> Confirmar Compra</a>
 
                 <a asp-controller="Carrito" asp-action="CatalogoProducto" class="btn btn-secondary"> Volver</a>
-
-
-            </div>
-        </div>
-    </div>
-</div>
+            </article>
+        </section>
+    </article>
+</section>
 
 @section Scripts{
-
     <script type="text/javascript">
-
         $(document).ready(function () {
             $("#btnAnadir").click(() => { addTemporalProduct(); });
-            //document.getElementById("btnAnadir").addEventListener("click", ()=> {  alert('HOLA MUNDO') });
         });
 
-        const addTemporalProduct = () => {
-            const quantity = $("#txtCantidad").val();
-            const productId = $("#hdnIdProducto").val();
+        let addTemporalProduct = () => {
+            let quantity = $("#txtCantidad").val();
+            let productId = $("#hdnIdProducto").val();
 
             $.ajax({
                 type: 'POST',
@@ -79,7 +70,7 @@
                     "cantidad": quantity
                 },
                 success: () => {
-                    alert("Se añadio el producto satisfactoriamente");
+                    alert("Se añadió el producto satisfactoriamente");
                     $("#txtCantidad").val("");
                 },
                 error: (ex, det) => {
@@ -87,10 +78,6 @@
                 }
             });
         }
-
-
     </script>
-
 }
-
 

@@ -1,4 +1,4 @@
-﻿@model List<ProductosCatalogosModel>
+@model List<ProductosCatalogosModel>
 @{
     ViewData["Title"] = "CatalogoProducto";
 }
@@ -6,25 +6,21 @@
 <h1>Catalogo de VideoJuegos</h1>
 
 <div class="row mt-5">
-    @foreach (var product in Model)
-    {   
-            <div class="col-md-3">
-                <div class="card mt-2">
-                    <center>
-                        <img class="card-img-top" style="width: 130px; height:130px;" src="@product.imagen" alt="@product.nombreproducto">
-                    </center>
-                    <div class="card-body">
-                        <h5 class="card-title limiter">@product.nombreproducto</h5>
-                        <p class="card-text log-limiter">@product.descripcion</p>
-                        <a asp-action="DetalleProducto" asp-controller="Carrito"
-                           asp-route-id="@product.idproducto" class="btn btn-success">
-                            <i class="fa-solid fa-magnifying-glass"></i> Detalles
-                        </a>
-                    </div>
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3">
+            <div class="card mt-2">
+                <center>
+                    <img class="card-img-top img-fluid" style="width: 130px; height:130px;" src="@item.imagen" alt="@item.nombreproducto">
+                </center>
+                <div class="card-body">
+                    <h5 class="card-title text-center limiter">@item.nombreproducto</h5>
+                    <p class="card-text text-center log-limiter">@item.descripcion</p>
+                    <a asp-action="DetalleProducto" asp-controller="Carrito" asp-route-id="@item.idproducto" class="btn btn-success">
+                        <i class="fa-solid fa-magnifying-glass"></i> Detalles
+                    </a>
                 </div>
             </div>
-
-
-
+        </div>
     }
 </div>
