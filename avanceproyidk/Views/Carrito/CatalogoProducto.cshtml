@@ -14,8 +14,9 @@
                     <img class="card-img-top img-fluid" style="width: 130px; height:130px;" src="@item.imagen" alt="@item.nombreproducto">
                 </center>
                 <div class="card-body">
-                    <h5 class="card-title text-center limiter">@item.nombreproducto</h5>
-                    <p class="card-text text-center log-limiter">@item.descripcion</p>
+                    <h5 class="card-title limiter">@item.nombreproducto</h5>
+                    <p class="card-text log-limiter">@item.descripcion.Substring(0,40)...</p>
+
                     <a asp-action="DetalleProducto" asp-controller="Carrito" asp-route-id="@item.idproducto" class="btn btn-success">
                         <i class="fa-solid fa-magnifying-glass"></i> Detalles
                     </a>
